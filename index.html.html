@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Princess Mavi 💖</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Comic Sans MS", cursive;
+      background: linear-gradient(to bottom, #ffe0f0, #ffc1dd);
+      overflow: hidden;
+      text-align: center;
+      position: relative;
+    }
+
+    /* Falling Hearts Forever */
+    .heart {
+      position: absolute;
+      font-size: 22px;
+      animation: floatUp linear infinite;
+      opacity: 0.8;
+    }
+
+    @keyframes floatUp {
+      0% {transform: translateY(100vh) rotate(0deg); opacity: 1;}
+      100% {transform: translateY(-10vh) rotate(360deg); opacity: 0;}
+    }
+
+    /* Card */
+    .card {
+      background: rgba(255, 255, 255, 0.95);
+      width: 420px;
+      margin: 60px auto;
+      padding: 30px;
+      border-radius: 35px;
+      box-shadow: 0 0 30px rgba(255, 105, 180, 0.4);
+      animation: fadeIn 2s ease;
+      position: relative;
+      z-index: 2;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(40px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    h1 {color: hotpink; font-size: 32px; margin-bottom: 10px;}
+    p {color: #555; font-size: 17px; line-height: 1.6;}
+    img {width: 280px; border-radius: 25px; margin: 20px 0; box-shadow: 0 0 20px rgba(255,182,193,0.7);}
+    button {
+      background: pink; color: white; border: none; padding: 14px 25px;
+      border-radius: 25px; cursor: pointer; font-size: 16px; font-weight: bold;
+      transition: 0.3s; margin-top: 15px;
+    }
+    button:hover {background: deeppink; transform: scale(1.08);}
+    footer {margin-top: 20px; color: hotpink; font-size: 18px;}
+
+    /* Popup Love Letter */
+    #lovePopup {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(255,182,193,0.95);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      z-index: 99;
+      opacity: 0;
+      animation: popupFade 1s forwards;
+    }
+
+    #lovePopup h2 {font-size: 36px; color: deeppink; margin-bottom: 20px;}
+    #lovePopup p {font-size: 20px; color: #880033; max-width: 80%; line-height: 1.5; text-align: center;}
+    #lovePopup button {
+      margin-top: 25px; background: deeppink; padding: 12px 25px; border-radius: 25px;
+      font-size: 18px; font-weight: bold; color: white; cursor: pointer;
+    }
+
+    @keyframes popupFade {to {opacity: 1;}}
+  </style>
+</head>
+<body>
+
+  <!-- Background Music -->
+  <audio id="bgMusic" loop>
+    <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <!-- Floating Hearts Container -->
+  <div id="heartsContainer"></div>
+
+  <!-- Main Card -->
+  <div class="card">
+    <h1>Princess Mavi 👑💖</h1>
+    <img src="2b16fc25-c186-498e-9518-2c0df67b7d2d.png" alt="Mavi Photo">
+    <p>Hi my love Mavi 🌸<br>I made this little pink princess page just for you.</p>
+    <p>You are my sweetest blessing, my comfort,<br>and the most beautiful part of my life 💕</p>
+    <p>I’ll always choose you, every single day 💘</p>
+    <button onclick="alert('Mavi 💖 you are my princess forever 😘👑')">Click Me, Princess 🎀</button>
+    <footer>– Your Boyfriend 💗</footer>
+  </div>
+
+  <!-- Love Letter Popup -->
+  <div id="lovePopup">
+    <h2>💖 My Princess Mavi 💖</h2>
+    <p>
+      You are my sunshine, my joy, my heart 💕<br>
+      Every moment with you is a treasure.<br>
+      I love you more than words can say 😘👑
+    </p>
+    <button onclick="closePopup()">I Love You Too 💗</button>
+  </div>
+
+  <script>
+    // Music autoplay
+    const music = document.getElementById('bgMusic');
+    window.addEventListener('load', () => {
+      music.play().catch(() => {
+        console.log('Autoplay blocked, user must press play.');
+      });
+    });
+
+    // Falling hearts forever
+    const heartsContainer = document.getElementById('heartsContainer');
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      const heartTypes = ['💗','💖','💕','💘','🎀'];
+      heart.innerText = heartTypes[Math.floor(Math.random()*heartTypes.length)];
+      heart.style.left = Math.random()*100 + '%';
+      heart.style.fontSize = (20 + Math.random()*30) + 'px';
+      heart.style.animationDuration = (4 + Math.random()*4) + 's';
+      heartsContainer.appendChild(heart);
+
+      setTimeout(()=> {heart.remove()}, 8000);
+    }
+    setInterval(createHeart, 500);
+
+    // Popup control
+    const popup = document.getElementById('lovePopup');
+    function closePopup() { popup.style.display = 'none'; }
+  </script>
+
+</body>
+</html>
